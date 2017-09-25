@@ -70,21 +70,11 @@ shinyAppPages = createMultipageServer(
                                 ), paper_bgcolor = 'black', plot_bgcolor = 'black'))
   },
   CampFire2D = function(input) {
-    stages = c('Pluripotency', 'Neuroectoderm',
-                'Neural Differentiation', 'Cortical Specification',
-                'Deep Layers', 'Upper Layers','Original')
-    index = 1
-    for (i in 1:7)  {
-      if (input$frames == stages[i]) {
-        index <- i;
-        break;
-      }
-    }
     disease <- input$dis
-    return(plot_ly() %>% layout(title=input$example,
+    return(plot_ly() %>% layout(title = input$example,
                                 images = list(
                                   list(
-                                    source = paste0(disease, paste0(toString(index),"_2d.png" )),
+                                    source = paste0(disease, "_2d.png"),
                                     xref = "paper",
                                     yref = "paper",
                                     x = 0,
@@ -93,8 +83,7 @@ shinyAppPages = createMultipageServer(
                                     sizey = 1,
                                     opacity = 1
                                   )
-                                ),
-                                paper_bgcolor = 'black', plot_bgcolor = 'black'))
+                                ), paper_bgcolor = 'black', plot_bgcolor = 'black'))
   }
 )
 
