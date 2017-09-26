@@ -2,6 +2,7 @@
 
 library(plotly)
 library(shiny)
+library(shinyjs)
 
 source("./R/multipage_shiny_lib.R")
 
@@ -14,7 +15,7 @@ shinyAppPages = createMultipageServer(
     # shiny app. The above input is for stage of development and below that is
     # the disease selection. 
     selectInput(inputId = "frames",
-                label = "Select Stage of Development:",
+                label = "Select stage of development to highlight:",
                 choices = c('Pluripotency', 'Neuroectoderm',
                             'Neural Differentiation', 'Cortical Specification',
                             'Deep Layers', 'Upper Layers','Original'),
