@@ -17,5 +17,10 @@ Set-Location $PSScriptRoot
 # Kill all running instances
 # &taskkill /im chrome* /F
 
-Chrome-Kiosk 'https://nickt.shinyapps.io/swotr?=Wall' -MonitorNum 1 
-Chrome-Kiosk 'https://nickt.shinyapps.io/swotr?=Floor' -MonitorNum 2
+#URLS for external version
+#Chrome-Kiosk 'https://nickt.shinyapps.io/swotr?=Wall' -MonitorNum 1 
+#Chrome-Kiosk 'https://nickt.shinyapps.io/swotr?=Floor' -MonitorNum 2
+
+#URLS for IDEA Cluster
+Chrome-Kiosk 'https://lp01.idea.rpi.edu/shiny/erickj4/swotr?=Wall' -MonitorNum 1 
+Chrome-Kiosk 'https://lp01.idea.rpi.edu/shiny/erickj4/swotr?=Floor' -MonitorNum 2
