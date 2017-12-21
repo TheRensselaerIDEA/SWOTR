@@ -8,8 +8,17 @@ makeCircosDiagram <- function(clusterVal) {
   library(circlize);
 ##########################################################################################
 
-disease <- "Atypical autism";
-png(filename = paste0("Github/swotr/www/",paste0(disease ,paste0(clusterVal,"_floor.png"))),
+disease <- "Antisocial_personality_disease";
+#png(filename = paste0("Github/swotr/www/",paste0(disease ,paste0(clusterVal,"_floor.png"))),
+#    type = "cairo",
+#    units="in",
+#    width = 20,
+#    height = 20,
+#    pointsize = 1,
+#    res = 150)
+
+
+png(filename = paste0(disease ,paste0(clusterVal,"_floor.png")),
     type = "cairo",
     units="in",
     width = 20,
@@ -17,10 +26,15 @@ png(filename = paste0("Github/swotr/www/",paste0(disease ,paste0(clusterVal,"_fl
     pointsize = 1,
     res = 150)
 
+
 # Import connection data from SWOT clock site
-dat <- read.csv(paste0(paste0("GitHub/swotr/data/",disease), "_connection_data.csv"), sep = ",", head = FALSE);
+#dat <- read.csv(paste0(paste0("GitHub/swotr/data/",disease), "_connection_data.csv"), sep = ",", head = FALSE);
 # Import heat connection data from SWOT clock site
-heat <- read.csv(paste0(paste0("Github/swotr/data/",disease), "_heat_map_data.csv"), sep = ",");
+#heat <- read.csv(paste0(paste0("Github/swotr/data/",disease), "_heat_map_data.csv"), sep = ",");
+# Import connection data from SWOT clock site
+dat <- read.csv(paste0(disease, "_connection_data.csv"), sep = ",", head = FALSE);
+# Import heat connection data from SWOT clock site
+heat <- read.csv(paste0(disease, "_heat_map_data.csv"), sep = ",");
 lab <- heat[,2]
 
 tmp <- as.matrix(dat);
@@ -34,7 +48,8 @@ colnames(mat) = lab
 cluster <- heat[,3]
 name <- as.character(heat[,2])
 par(bg = 'black')
-colors = c("dodgerblue4", "firebrick1","darkorange1", "red4", "salmon4", "darkolivegreen4")
+colors = c(rgb(215, 48, 39, maxColorValue=255), rgb(252, 141, 89, maxColorValue=255),rgb(254, 224, 144, maxColorValue=255), rgb(224, 243, 248, maxColorValue=255), rgb(145, 191, 219, maxColorValue=255), rgb(69, 117, 180, maxColorValue=255))
+
 
 
 # Design the transparency for this specific cluster
