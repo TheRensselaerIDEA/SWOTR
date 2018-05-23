@@ -3,11 +3,16 @@
 # coded, and any shiny objects are supported inside each
 # window. This gives more flexibility than the other
 # multiwindow shiny which can only display plotly objects
+#
+# UPDATED: 23 May 2018 (JSE): 
+#    * Monitor window added; 
+#    * css for centering added; 
+#    * verified on Shiny Server
 
 library(shiny)
 
-campfireApp = function(controller = NA, wall = NA, floor = NA, serverFunct = NA) {
-	ui <- campfireUI(controller, wall, floor)
+campfireApp = function(controller = NA, wall = NA, floor = NA, monitor=NA, serverFunct = NA) {
+	ui <- campfireUI(controller, wall, floor, monitor)
 
 	serverValues = reactiveValues()
 	campfire_server <- shinyServer(function(input, output) {
@@ -25,7 +30,7 @@ campfireApp = function(controller = NA, wall = NA, floor = NA, serverFunct = NA)
 	shinyApp(ui, server = campfire_server)
 }
 
-campfireUI = function(controller, wall, floor) {
+campfireUI = function(controller, wall, floor, monitor) {
 	ui <- shinyUI(bootstrapPage(
 		HTML('<script type="text/javascript">
 			$(function() {
@@ -40,9 +45,14 @@ campfireUI = function(controller, wall, floor) {
 			});
 		     </script>'),
 		div(class="WindowSelector Window",
-		    HTML('<a href="?Controller">Controller</a></br>'),
-		    HTML('<a href="?Wall">Wall</a></br>'),
-		    HTML('<a href="?Floor">Floor</a></br>')
+		    HTML('<h2><a href="?Controller">Controller</a></h2>'),
+		    HTML('<h2><a href="?Wall">Wall</a></h2>'),
+		    HTML('<h2><a href="?Floor">Floor</a></h2>'),
+		    HTML('<h2><a href="?Monitor">External Monitor</a></h2>'),
+		    style='position: absolute; 
+		          top: 50%; left: 50%; 
+		          margin-right: -50%; 
+		          transform: translate(-50%, -50%)'
 		),
 		div(class="Controller Window",
 		    controller
@@ -52,7 +62,11 @@ campfireUI = function(controller, wall, floor) {
 		),
 		div(class="Floor Window",
 		    floor
+		),
+		div(class="Monitor Window",
+		    monitor
 		)
+		
 	))
 
 	return(ui)
